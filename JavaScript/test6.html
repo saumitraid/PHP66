@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-6</title>
+    <style type="text/css">
+        #myDiv{
+            width:200px;
+            height:200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        function chngColor(){
+            let bgcolor=document.getElementById("color").value;
+            // alert(bgcolor);
+            document.getElementById("myDiv").style.backgroundColor=bgcolor;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        Select your color
+        <select name="color" id="color" onchange="chngColor()">
+            <option value="#fff">Select</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+        </select>
+    </form>
+    <div id="myDiv">
+
+    </div>
+</body>
+</html>

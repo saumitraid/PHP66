@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-5</title>
+    <script>
+        function displayName(){
+            let name=document.getElementById("name").value;
+            document.getElementById("display").innerHTML = "Hello " + name;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        Enter your name:
+        <input type="text" name="name" id="name">
+        <button type="button" onclick="displayName();">Click Here</button>
+    </form>
+    <p style="color:blue; font-size:22px;" id="display"></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var m=Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+    </script>
+    <form>
+        Date of birth:
+        <select name="day">
+            <option value="" selected>Day</option>
+            <script>
+                for(let i=1; i<=31; i++){
+                    document.write('<option value="'+i+'">'+i+'</option>');
+                }
+            </script>
+        </select>
+        <select name="month">
+            <option value="" selected>Month</option>
+            <script>
+                for(let i=0; i<m.length; i++){
+                    document.write('<option value="'+m[i]+'">'+m[i]+'</option>');
+                }
+            </script>
+        </select>
+    </form>
+    
+</body>
+</html>
