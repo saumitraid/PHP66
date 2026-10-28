@@ -36,15 +36,40 @@
                     $name=$_POST['name'];
                     $email_id=$_POST['email_id'];
                     $pwd=password_hash( $_POST['pwd'], PASSWORD_DEFAULT);
-                    $sql="INSERT INTO student (name, email_id, pwd) VALUE ('$name', '$email_id', '$pwd')";
-                    mysqli_query($con, $sql);
-                    echo "User Registration is successfull";
+                    $src="SELECT * FROM student WHERE email_id='$email_id'";
+                    $rs=mysqli_query($con, $src);
+                    if(mysqli_num_rows($rs)>0){
+                        ?>
+                        <div class="alert alert-danger">
+                        <?php
+                        echo "You are already registered";
+                         ?>
+                        </div>
+                        <?php
+                    }else{
+                        $sql="INSERT INTO student (name, email_id, pwd) VALUE ('$name', '$email_id', '$pwd')";
+                        mysqli_query($con, $sql);
+                        ?>
+                        <div class="alert alert-success">
+                        <?php
+                        echo "User Registration is successfull";
+                        ?>
+                        </div>
+                        <?php
+                    }
                 }catch(Exception $e){
+                    ?>
+                    <div class="alert alert-danger">
+                    <?php
                     echo $e->getMessage();
+                    ?>
+                    </div>
+                    <?php
                 }
             }
             ?>
         </div>
+        <a href="viewStudent.php" class="btn btn-info">View Student</a>
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

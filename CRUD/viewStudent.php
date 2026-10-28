@@ -22,11 +22,30 @@ try{
     <div class="container">
         <h1>All Student Details</h1>
         <?php
+        if(isset($_GET['msg'])){
+            ?>
+            <div class="alert alert-success col-4 text-center">
+            <?php
+            echo $_GET['msg'];
+            ?>
+            </div>
+            <?php
+        }
+        if(isset($_GET['err'])){
+            ?>
+            <div class="alert alert-danger col-4 text-center">
+            <?php
+            echo $_GET['err'];
+            ?>
+            </div>
+            <?php
+        }
         if(mysqli_num_rows($rs)>0){
             ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Sl No.</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Update</th>
@@ -35,15 +54,32 @@ try{
                 </thead>
                 <tbody>
                     <?php
+                    $i=1;
                     while($rec=mysqli_fetch_assoc($rs)){
                         ?>
                         <tr>
+                            <td><?php echo $i; ?></td>
                             <td><?php echo $rec['name'] ?></td>
                             <td><?php echo $rec['email_id'] ?></td>
-                            <td><i class="far fa-edit text-primary"></i></td>
-                            <td><i class="far fa-trash-alt text-danger"></i></td>
+                            <td>
+                                <form name="upd-frm-<?php echo $i; ?>" method="post" action="updStudent.php">
+                                    <input type="hidden" name="sid" value="<?php echo $rec['sid'] ?>">
+                                    <button type="submit" class="btn">
+                                    <i class="far fa-edit text-primary"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form name="del-frm-<?php echo $i; ?>" method="post" action="delStudent.php">
+                                    <input type="hidden" name="sid" value="<?php echo $rec['sid'] ?>">
+                                    <button type="submit" class="btn">
+                                    <i class="far fa-trash-alt text-danger"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         <?php
+                        $i++;
                     }
                     ?>
                 </tbody>
